@@ -5,19 +5,19 @@
 int main()
 {
 	int checku = 0;
-	double n_max = 0, n_min = 0, n_rem1 = 0, n_rem2 = 0;
+	double n_max = 0, n_min = 99999.9, n_rem1 = 0, n_rem2 = 0;
 	bool check_opt = false;
 	char n_jm;
+	std::string a, b;
 	std::vector<double> nums = {0, 0};
 	std::vector<std::string> nums_jm = { "", "" };
 	for (double usr_input; std::cin >> usr_input;)
 	{
 		++checku;
-		if (checku > 2)
+		if (checku == 3)
 		{
 			checku = 1;
 		}
-
 		if (checku == 1)
 		{
 			nums[0] = usr_input;
@@ -85,38 +85,41 @@ int main()
 			}
 		}
 
-		std::sort(nums.begin(), nums.end());
-		if (n_rem1 != nums[0])
+		if (checku == 2)
 		{
-			std::string a = nums_jm[0], b = nums_jm[1];
-			nums_jm[0] = b;
-			nums_jm[1] = a;
-		}
-		if (nums[1] > n_max)
-		{
-			std::cout << "This number is the smallest one from all you entered." << std::endl;
-			n_max = nums[1];
-		}
-		if (nums[0] < n_min)
-		{
-			std::cout << "This number is the biggest one from all you entered." << std::endl;
-			n_min = nums[0];
+			std::sort(nums.begin(), nums.end());
+			if (n_rem1 != nums[0])
+			{
+				a = nums_jm[0], b = nums_jm[1];
+				nums_jm[0] = b;
+				nums_jm[1] = a;
+			}
+			if (nums[1] > n_max)
+			{
+				std::cout << nums[1] << "<--- This number is the biggest one from all you entered." << std::endl;
+				n_max = nums[1];
+			}
+			if (nums[0] < n_min)
+			{
+				std::cout << nums[0] << "<--- This number is the smallest one from all you entered." << std::endl;
+				n_min = nums[0];
+			}
 		}
 	}
 	std::sort(nums.begin(), nums.end());
 	
 	if (nums[0] == nums[1])
 	{
-		std::cout << "The numbers are equal." << std::endl;
+		std::cout << std::endl << "The numbers are equal." << std::endl;
 	}
 	else
 	{
-		std::cout << "Smaller: " << nums[0] << " Higher: " << nums[1];
+		std::cout << std::endl << "Smaller: " << nums[0] << " Higher: " << nums[1];
 	}
 
 	if (nums[1]-nums[0] == 1)
 	{
-		std::cout << "The numbers are close to be equal." << std::endl;
+		std::cout << std::endl << "The numbers are close to be equal." << std::endl;
 	}
 
 	double cm_to_m = 0.01, inch_to_m = 0.0254, ft_to_m = 0.3048, sum1 = 0, sum2 = 0;
@@ -134,7 +137,7 @@ int main()
 	}
 	else
 	{
-		std::cout << "Something went wrong." << std::endl;
+		std::cout << std::endl << "Something went wrong." << std::endl;
 	}
 
 	if (nums_jm[1] == "cm")
@@ -151,13 +154,13 @@ int main()
 	}
 	else
 	{
-		std::cout << "Something went wrong." << std::endl;
+		std::cout << std::endl << "Something went wrong." << std::endl;
 	}
-	std::cout << nums[0] << nums_jm[0] << " to m: " << sum1 << "m" << std::endl;
-	std::cout << nums[1] << nums_jm[1] << " to m: " << sum2 << "m" << std::endl;
+	std::cout << std::endl << nums[0] << nums_jm[0] << " to m: " << sum1 << "m" << std::endl;
+	std::cout << std::endl << nums[1] << nums_jm[1] << " to m: " << sum2 << "m" << std::endl;
 
 	std::vector<double>res_sum = { sum1,sum2 };
 	std::sort(res_sum.begin(), res_sum.end());
-	std::cout << res_sum[0] << "m" << "\t" << res_sum[1] << "m" << std::endl;
+	std::cout << std::endl << res_sum[0] << "m" << "\t" << res_sum[1] << "m" << std::endl;
 	system("pause");
 }
